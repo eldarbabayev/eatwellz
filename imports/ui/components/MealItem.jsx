@@ -1,3 +1,43 @@
+import React, { Component, PropTypes } from 'react';
+
+import Tag from './Tag.jsx';
+
+export default class MealItem extends Component {
+
+  renderTags () {
+    return this.props.meal.tags.map((tag) => (
+      <Tag tag={tag}/>
+    ));
+  }
+
+  render() {
+    return (
+        <div className="meal_item" onClick={this.props.onClick}>
+          <div className="meal_photo">
+            <img src={this.props.meal.imgURL}/>
+          </div>
+          <div className="meal_information">
+              <h2 className="meal_title">{this.props.meal.name}</h2>
+                <div className="clearer"></div>
+              <ul className="tags">
+                  {this.renderTags()}
+              </ul>
+          </div>
+            <div className="meal_price">
+              <h2>£{this.props.meal.price}</h2>
+            </div>
+        </div>
+      );
+  }
+}
+
+MealItem.propTypes = {
+  // This component gets the meal to display through a React prop.
+  // We can use propTypes to indicate it is required
+  meal: React.PropTypes.object,
+};
+
+/*
 import React from 'react';
 import { _ } from 'meteor/underscore';
 import classnames from 'classnames';
@@ -96,3 +136,4 @@ TodoItem.propTypes = {
   editing: React.PropTypes.bool,
   onEditingChange: React.PropTypes.func,
 };
+*/
